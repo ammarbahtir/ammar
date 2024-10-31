@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة تخمين الرقم</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #006400;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>لعبة تخمين الرقم</h1>
+    <p>حاول تخمين الرقم الذي اخترناه بين 1 و 100</p>
+
+    <input type="number" id="guess" placeholder="أدخل تخمينك هنا" />
+    <button onclick="checkGuess()">تحقق</button>
+
+    <p id="message"></p>
+
+    <script>
+        // اختيار رقم عشوائي بين 1 و 100
+        const numberToGuess = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            // جلب التخمين من المستخدم
+            const guess = parseInt(document.getElementById("guess").value);
+            attempts++;
+
+            // جلب مكان عرض الرسائل
+            const message = document.getElementById("message");
+
+            // التحقق من التخمين
+            if (guess < numberToGuess) {
+                message.textContent = "الرقم أكبر من تخمينك. حاول مرة أخرى!";
+            } else if (guess > numberToGuess) {
+                message.textContent = "الرقم أصغر من تخمينك. حاول مرة أخرى!";
+            } else {
+                message.textContent = `مبروك! لقد خمنت الرقم الصحيح ${numberToGuess} في ${attempts} محاولة.`;
+            }
+        }
+    </script>
+
+</body>
+</html>
